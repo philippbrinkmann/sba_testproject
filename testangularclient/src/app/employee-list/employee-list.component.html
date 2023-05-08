@@ -1,0 +1,23 @@
+<a>Employees:</a>
+<div class="card-body">
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First Name</th>
+        <th sopce="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employees">
+        <td>{{ emp.eid }}</td>
+        <td>{{ emp.firstName }}</td>
+        <td>{{ emp.lastName }}</td>
+        <td><a href="mailto:{{ emp.email }}">{{ emp.email }}</a></td>
+        <td><button type="button" class="btn btn-info" (click)="showUser(emp.eid)">...</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
