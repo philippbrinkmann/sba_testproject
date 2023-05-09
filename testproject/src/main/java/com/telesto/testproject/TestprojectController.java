@@ -42,20 +42,19 @@ public class TestprojectController {
 	@GetMapping("/employee/{id}")
 	public EmployeeData getEmployee(@PathVariable Long id) {
 		System.out.println("Trying to find employee " + id);
-		EmployeeData data = new EmployeeData(repository.findById(id).orElseThrow());
-		chatRepo.findByEid(id).forEach(cp -> {
-			data.addPartner(cp);
-			data.addChat(cp.getRID());
-		});
-		data.getPartners().forEach(chat -> {
-			messageRepo.findByRid(chat.getRID()).forEach(msg -> {
-				data.addMessage(msg);
-			});
-		});
-		System.out.println("Found employee: " + data.getEmployee().getFirstName());
+		Employee data = repository.findById(id).orElseThrow();
+		System.out.println("Found employee: " + data.getFirstName());
 		System.out.println(data.toString());
-		//Salaries
+		//TODO: Salaries
 		return data;
+	}
+	
+	@PostMapping("/employee/{id}")
+	public void updateEmployee(@PathVariable Long id, @RequestBody Employee data) {
+	  if(id == data.getEid()) {
+	    this.repository.merge(data);
+	  }
+	  //TODO: success response
 	}
 	
 	@GetMapping("/employee/{id}/chat/{id2}")
@@ -65,13 +64,14 @@ public class TestprojectController {
 	
 	@GetMapping("/employee/{id}/chats")
 	public List<Long> getEmployeeChatEIDs(@PathVariable Long id) {
-		List<Long> list = new ArrayList<Long>();
+		/*List<Long> list = new ArrayList<Long>();
 		chatRepo.findByEid(id).forEach(cp -> {
 			chatRepo.findByRid(cp.getRID()).forEach(cp1 -> {
 				if(cp1.getEID() != id)
 					list.add(cp1.getEID());
 			});
-		});
+		});*/
+		//TODO: Überarbeiten wenn das neue custom Query Repository für die Chats fertig ist.
 		return list;
 	}
 }
