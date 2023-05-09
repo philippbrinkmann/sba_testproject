@@ -16,7 +16,6 @@
         <td>{{ emp.firstName }}</td>
         <td>{{ emp.lastName }}</td>
         <td><a href="mailto:{{ emp.email }}">{{ emp.email }}</a></td>
-        <!-- TODO: only show the edit button to admins or the user themselves-->
         <td><button type="button" class="btn btn-info" (click)="showUser(emp.eid)">...</button></td>
       </tr>
     </tbody>
