@@ -10,10 +10,10 @@ import { EDataServiceService } from '../edata-service.service';
 })
 export class HomeComponent implements OnInit {
 	
-	private username : string;
+    username : string;
 	
 	constructor(private router: Router) {
-		
+		this.username = "";
 	}
 	
 	ngOnInit() : void {
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
 	  if (!localStorage.getItem('User')) {
 	    this.router.navigate(['/501']);
 	  } else {
-	    username = localStorage.getItem('User');
+	    this.username = localStorage.getItem('User')!;
 	  }
 	}
 	

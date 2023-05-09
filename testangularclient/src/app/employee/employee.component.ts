@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EDataServiceService } from '../edata-service.service';
-import { EmployeeData } from '../model/employee-data';
-import { FormBuilder } from '@angular/forms';
+import { Employee } from '../model/employee';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-employee',
@@ -33,12 +33,12 @@ export class EmployeeComponent {
 	//TODO: in onInit verschieben?
 	
 	public editEmployee() : void {
-	  this.employee.firstName = this.employeeForm.firstName.getValue();
-	  this.employee.lastName = this.employeeForm.lastName.getValue();
-	  this.employee.email = this.employeeForm.email.getValue();
-	  this.employee.street = this.employeeForm.street.getValue();
-	  this.employee.nr = this.employeeForm.nr.getValue();
-	  this.employee.phoneNumber = this.employeeForm.phoneNumber.getValue();
+	  this.employee.firstName = this.employeeForm.get('firstName')!.value!;
+	  this.employee.lastName = this.employeeForm.get('lastName')!.value!;
+	  this.employee.email = this.employeeForm.get('email')!.value!;
+	  this.employee.street = this.employeeForm.get('street')!.value!;
+	  this.employee.nr = this.employeeForm.get('nr')!.value!;
+	  this.employee.phoneNumber = this.employeeForm.get('phoneNumber')!.value!;
 	  this.eService.editEmployee(this.employee);
 	}
 }

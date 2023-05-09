@@ -3,7 +3,7 @@ import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Employee } from './model/employee';
 import { Chat } from './model/chat';
-import { EmployeeData } from './model/employee-data';
+import { Project } from './model/project';
 
 @Injectable()
 export class EDataServiceService {
