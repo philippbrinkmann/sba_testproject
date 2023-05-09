@@ -8,12 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.telesto.testproject.model.CPRepository;
-import com.telesto.testproject.model.Chat;
 import com.telesto.testproject.model.Chatroom;
 import com.telesto.testproject.model.ChatroomRepository;
 import com.telesto.testproject.model.ChatParticipant;
@@ -43,7 +40,7 @@ public class TestprojectController {
 	}
 	
 	@GetMapping("/employee/{id}")
-	public Employee getEmployee(@PathVariable Long id) {
+	public EmployeeData getEmployee(@PathVariable Long id) {
 		System.out.println("Trying to find employee " + id);
 		EmployeeData data = new EmployeeData(repository.findById(id).orElseThrow());
 		chatRepo.findByEid(id).forEach(cp -> {
@@ -60,7 +57,6 @@ public class TestprojectController {
 		//Salaries
 		return data;
 	}
-	
 	@GetMapping("/employee/{id}/chat/{id2}")
 	public List<Message> getChatMessages(@PathVariable Long id, @PathVariable Long id2) {
 		return messageRepo.findByRid(id2);
@@ -75,6 +71,7 @@ public class TestprojectController {
 					list.add(cp1.getEID());
 			});
 		});
+		//TODO: Überarbeiten wenn das neue custom Query Repository für die Chats fertig ist.
 		return list;
 	}
 }

@@ -8,9 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.telesto.testproject.model.CPRepository;
-import com.telesto.testproject.model.Chat;
 import com.telesto.testproject.model.ChatParticipant;
-import com.telesto.testproject.model.ChatRepository;
 import com.telesto.testproject.model.Employee;
 import com.telesto.testproject.model.EmployeeRepository;
 import com.telesto.testproject.model.Message;
@@ -24,21 +22,15 @@ public class TestprojectApplication {
 	}
 
 	@Bean
-	CommandLineRunner init(EmployeeRepository empRepo, ChatRepository chatRepo, MessageRepository msgRepo) {
+	CommandLineRunner init(EmployeeRepository empRepo, CPRepository cpRepo, MessageRepository msgRepo) {
 		return args -> {
-			Employee emp1 = new Employee("Bob", "Bobson", "Main Street", 5L, 015111111L, "bob@email.com");
-			Employee emp2 = new Employee("Alice", "Alicent", "Main Street", 8L, 015111112L, "alice@email.com");
-			Chat chat = new Chat();
-			Message msg = new Message(chat, emp1, "Hello", "0:00");
-			chat.addMessage(msg);
-			chat.addUser(emp1);
-			emp1.addChat(chat);
-			emp1.addMessage(msg);
-			empRepo.save(emp1);
-			empRepo.save(emp2);
-			chatRepo.save(chat);
-			msgRepo.save(msg);
-			chatRepo.findAll().forEach(System.out::println);
+			empRepo.save(new Employee("Bob", "Bobson", "Main Street", 5L, 015111111L, "bob@email.com"));
+			empRepo.save(new Employee("Alice", "Alicent", "Main Street", 8L, 015111112L, "alice@email.com"));
+			cpRepo.save(new ChatParticipant(empRepo.findByFirstNameAndLastName("Bob", "Bobson").getEid(), 1L));
+			cpRepo.save(new ChatParticipant(empRepo.findByFirstNameAndLastName("Alice", "Alicent").getEid(), 1L));
+			msgRepo.save(new Message(empRepo.findByFirstNameAndLastName("Alice", "Alicent").getEid(), 1L, "Hello", LocalTime.now().toString()));
+			msgRepo.save(new Message(empRepo.findByFirstNameAndLastName("Bob", "Bobson").getEid(), 1L, "Hello to you too", LocalTime.now().toString()));
+			msgRepo.findAll().forEach(System.out::println);
 		};
 	}
 }

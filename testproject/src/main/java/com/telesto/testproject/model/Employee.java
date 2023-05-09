@@ -1,13 +1,8 @@
 package com.telesto.testproject.model;
 
-import java.util.List;
-import java.util.ArrayList;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,12 +18,6 @@ public class Employee {
 	@Id
 	@GeneratedValue
 	private Long EID;
-	
-	@ManyToMany(mappedBy = "users")
-	private List<Chat> chats;
-	
-	@OneToMany(mappedBy = "employee")
-	private List<Message> messages;
 	
 	public Employee() {
 		
@@ -46,8 +35,6 @@ public class Employee {
 		this.email = email;
 		this.lastName = l;
 		this.firstName = f;
-		this.chats = new ArrayList<Chat>();
-		this.messages = new ArrayList<Message>();
 	}
 	
 	public void setName(String f, String l) {
@@ -94,22 +81,6 @@ public class Employee {
 	
 	public Long getEid() {
 		return this.EID;
-	}
-	
-	public List<Chat> getChats() {
-		return this.chats;
-	}
-	
-	public List<Message> getMessages() {
-		return this.messages;
-	}
-	
-	public void addMessage(Message msg) {
-		this.messages.add(msg);
-	}
-	
-	public void addChat(Chat chat) {
-		this.chats.add(chat);
 	}
 	
 	@Override
