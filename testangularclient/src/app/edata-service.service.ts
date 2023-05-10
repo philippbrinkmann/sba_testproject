@@ -26,4 +26,10 @@ export class EDataServiceService {
   public findEmployeeChats(id : string): Observable<String[]> {
 	  return this.http.get<String[]>(this.empURL + id + "/chats");
   }
+  
+  public editEmployee(employee : Employee) : void {
+	  this.http.post<Employee>(this.empURL + employee.eid, employee).subscribe(data => {
+		  console.info(data);
+	  });
+  }
 }

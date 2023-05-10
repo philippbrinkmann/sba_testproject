@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.telesto.testproject.model.CPRepository;
@@ -57,10 +59,20 @@ public class TestprojectController {
 		//Salaries
 		return data;
 	}
-	@GetMapping("/employee/{id}/chat/{id2}")
+	
+	@PostMapping("/employee/{id}")
+	public Employee editEmployee(@PathVariable Long id, @RequestBody Employee employee) {
+		if (id.equals(employee.getEid())) {
+			Employee emp = this.repository.save(employee);
+			return emp;
+		}
+		return null;
+	}
+	
+	/*@GetMapping("/employee/{id}/chat/{id2}")
 	public List<Message> getChatMessages(@PathVariable Long id, @PathVariable Long id2) {
 		return messageRepo.findByRid(id2);
-	}
+	}*/
 	
 	@GetMapping("/employee/{id}/chats")
 	public List<Long> getEmployeeChatEIDs(@PathVariable Long id) {

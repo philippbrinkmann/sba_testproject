@@ -1,5 +1,6 @@
 <a>Employee Data:</a>
 <div class="card-body">
+	<!--
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">
       </thead>
@@ -29,7 +30,35 @@
 		  <td>{{ employee.employee.phoneNumber }}</td>
         </tr>
       </tbody>
-    </table>
+    </table>-->
+     <form [formGroup]="employeeForm" (ngSubmit)="editEmployee()">
+        <div>
+          <label>ID</label>
+          <label> {{ employee.employee.eid }}</label>
+        </div>
+        <div>
+          <label>First Name</label>
+          <input id="firstName" type="text" formControlName="firstName" value="{{ employee.employee.firstName }}">
+        </div>
+        <div>
+          <label>Last Name</label>
+          <input id="lastName" type="text" formControlName="lastName" value="{{ employee.employee.lastName }}">
+        </div>
+        <div>
+          <label>Email</label>
+          <input id="email" type="text" formControlName="email" value="{{ employee.employee.email }}">
+        </div>
+        <div>
+          <label>Address</label>
+          <input id="street" type="text" formControlName="street" value="{{ employee.employee.street }}">
+          <input id="nr" type="text" formControlName="nr" value="{{ employee.employee.nr }}">
+        </div>
+        <div>
+          <label>Phone Number</label>
+          <input id="phoneNumber" type="text" formControlName="phoneNumber" value="{{ employee.employee.phoneNumber }}">
+        </div>
+        <button class="button" type="submit">Save data</button>
+      </form>
   </div>
 <b>Chats:</b>
 <div class="chatlist-body">
