@@ -1,0 +1,11 @@
+<p>
+	Shopping List:
+</p>
+<app-shopping-list-edit></app-shopping-list-edit>
+<div>
+	<div>
+		<a *ngFor="let ingredient of ingredients" style="cursor: pointer;" (click)="onSelectIngredient(ingredient)">
+			<p>{{ ingredient.name}} {{ingredient.amount}}x</p>
+		</a>
+	</div>
+</div>

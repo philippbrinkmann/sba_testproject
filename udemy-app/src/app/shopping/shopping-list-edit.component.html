@@ -1,0 +1,14 @@
+<p>
+  Edit List:
+</p>
+<div>
+  <form>
+    <input type="text" id="name" #nameInput>
+    <input type="number" id="amount" #amountInput>
+    <div>
+      <button (click)="onAddIngredient()">Add</button>
+      <button (click)="onRemoveIngredient()">Remove</button>
+      <button (click)="onClearInput()">Clear</button>
+    </div>
+  </form>
+</div>

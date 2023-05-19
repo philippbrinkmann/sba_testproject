@@ -1,0 +1,32 @@
+<div *ngIf="selectedComponent === 1">
+	<label>Aufgabe 1:</label>
+	<app-success-alert></app-success-alert>
+	<app-warning-alert></app-warning-alert>
+</div>
+<div *ngIf="selectedComponent === 2">
+	<label>Aufgabe 2:</label>
+	<input type="text" [(ngModel)]="username">
+	<p>{{ username }}</p>
+	<button type="button" [disabled]="username === ''" (click)="onResetUsername()">Reset Username</button>
+</div>
+<div *ngIf="selectedComponent === 3">
+	<label>Aufgabe 3:</label>
+	<button (click)="onDetails()">Display Details</button>
+	<p *ngIf="details">Secret Password = password</p>
+	<div *ngFor="let click of clicks">
+		<p [ngStyle]="{'background-color': click >= 5 ? 'blue' : 'white'}" [ngClass]="{'white' : click >= 5}">{{ click
+			}}</p>
+	</div>
+</div>
+<div *ngIf="selectedComponent === 4">
+	<label>Aufgabe 4:</label>
+	<app-game-control (outputInterval)="onInterval($event)"></app-game-control>
+	<div *ngFor="let n of numbers; let index = index">
+		<app-even *ngIf="0 === n % 2" [evenNumber]="index"></app-even>
+		<app-odd *ngIf="1 === n % 2" [oddNumber]="index"></app-odd>
+	</div>
+</div>
+<div *ngIf="selectedComponent === 5">
+	<label>Aufgabe 5:</label>
+	<app-aufgabe5></app-aufgabe5>
+</div>

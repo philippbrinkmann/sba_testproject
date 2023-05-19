@@ -1,0 +1,19 @@
+<a *ngIf="!recipe">Details go here</a>
+<div *ngIf="recipe">
+	<img src="{{ recipe.imagePath }}" style="max-height: 300px;">
+	<p></p>
+	<label>{{ recipe.name }}</label>
+	<p></p>
+	<button>Manage</button>
+	<div>
+		<li><u (click)="onToShoppingList()" style="cursor: pointer; color: blue;">To Shopping List</u></li>
+		<li><u style="cursor: pointer;" routerLink="/recipes/{{ recipe.id }}/edit">Edit</u></li>
+	</div>
+	<div>
+		<p>{{ recipe.description }}</p>
+	</div>
+	<div>
+		<label>Ingredients needed:</label>
+		<p *ngFor="let ingredient of recipe.ingredients">{{ ingredient.name }} - {{ingredient.amount}}x</p>
+	</div>
+</div>

@@ -1,0 +1,21 @@
+<div>
+	<button routerLink="new">New Recipe</button>
+</div>
+<div>
+	<table>
+		<thead>
+			<tr>
+				<td>
+					Recipes:
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let recipe of recipes" >
+				<app-recipe-item [recipe]="recipe"></app-recipe-item>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<hr>
+<router-outlet></router-outlet>

@@ -1,0 +1,11 @@
+<hr>
+<div>
+	<div>
+		<button routerLink="recipes">Recipes</button>
+		<button routerLink="shopping">Shopping List</button>
+		<button *ngFor="let comp of aufgaben; let i = index" routerLink="/aufgaben/{{ i }}">{{ comp }}</button>
+	</div>
+</div>
+<p>
+</p>
+<hr>
